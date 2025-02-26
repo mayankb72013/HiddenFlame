@@ -1,6 +1,7 @@
 import { BrowserRouter,Routes,Route } from "react-router-dom"
 import SignUp from "./pages/signup"
 import SignIn from "./pages/signin"
+import Dashboard from "./pages/dashboard"
 export default function App(){
     
   return (
@@ -8,6 +9,7 @@ export default function App(){
           <Routes>
             <Route path="/signup" element={<SignUp></SignUp>}></Route>
             <Route path="/signin" element={<SignIn></SignIn>}></Route>
+            <Route path="/dashboard" element={<Dashboard></Dashboard>}></Route>
           </Routes>
       </BrowserRouter>
     )

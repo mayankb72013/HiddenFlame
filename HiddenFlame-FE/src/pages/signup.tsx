@@ -1,6 +1,14 @@
 import "@fortawesome/fontawesome-free/css/all.min.css";
 
+
 export default function SignUp() {
+ 
+   
+
+    function googleAuth() {
+        window.location.assign("http://localhost:3000/auth/google");
+    }
+
     return (
         <div className="flex items-center justify-center h-screen bg-gray-100 font-mySans">
             <div className="relative w-[768px] max-w-full min-h-[480px] bg-white shadow-lg rounded-lg overflow-hidden">
@@ -12,7 +20,7 @@ export default function SignUp() {
                     <form className="flex flex-col items-center justify-center h-full px-12 text-center">
                         <h1 className="text-3xl font-mySans font-extrabold">Create Account</h1>
                         <div className="flex space-x-3 my-4">
-                            <a href="#" className="border border-gray-300 rounded-full px-2.5 py-2"><i className="fab fa-google-plus-g"></i></a>
+                            <a href="http://localhost:3000/auth/google" className="border border-gray-300 rounded-full px-2.5 py-2"><i className="fab fa-google-plus-g"></i></a>
                             <a href="#" className="border border-gray-300 rounded-full px-3.5 py-2"><i className="fab fa-linkedin-in"></i></a>
                             <a href="#" className="border border-gray-300 rounded-full px-4 py-2"><i className="fab fa-facebook-f"></i></a>
                         </div>
