@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;800&display=swap');
+@import "tailwindcss";
+@import "@fortawesome/fontawesome-free/css/all.min.css";
+
+@theme {
+
+  /* Text Colors */
+  --color-text-50: rgb(239, 247, 246) ;
+  --color-text-100: rgb(229, 242, 241) ;
+  --color-text-200: rgb(209, 232, 230) ;
+  --color-text-300: rgb(178, 247, 239) ;
+  --color-text-400: rgb(123, 223, 242) ;
+  --color-text-500: rgb(90, 196, 217) ;
+  --color-text-600: rgb(58, 170, 192) ;
+  --color-text-700: rgb(31, 143, 167) ;
+  --color-text-800: rgb(0, 117, 142) ;
+  --color-text-900: rgb(0, 90, 107) ;
+  --color-text-950: rgb(0, 62, 72) ;
+
+  /* Background Colors */
+  --color-background-50: rgb(255, 253, 254) ;
+  --color-background-100: rgb(254, 250, 251) ;
+  --color-background-200: rgb(252, 243, 245) ;
+  --color-background-300: rgb(247, 214, 224) ;
+  --color-background-400: rgb(242, 181, 212) ;
+  --color-background-500: rgb(224, 139, 182) ;
+  --color-background-600: rgb(200, 100, 154) ;
+  --color-background-700: rgb(168, 76, 126) ;
+  --color-background-800: rgb(135, 47, 97) ;
+  --color-background-900: rgb(97, 31, 69) ;
+  --color-background-950: rgb(64, 14, 41) ;
+
+  /* Primary Colors */
+  --color-secondary-50: rgb(227, 248, 252) ;
+  --color-secondary-100: rgb(178, 247, 239) ;
+  --color-secondary-200: rgb(123, 223, 242) ;
+  --color-secondary-300: rgb(90, 196, 217) ;
+  --color-secondary-400: rgb(58, 170, 192) ;
+  --color-secondary-500: rgb(31, 143, 167) ;
+  --color-secondary-600: rgb(0, 117, 142) ;
+  --color-secondary-700: rgb(0, 90, 107) ;
+  --color-secondary-800: rgb(0, 62, 72) ;
+  --color-secondary-900: rgb(0, 36, 42) ;
+  --color-secondary-950: rgb(0, 16, 19) ;
+
+  /* Secondary Colors */
+  --color-primary-50: rgb(255, 247, 249) ;
+  --color-primary-100: rgb(255, 229, 236) ;
+  --color-primary-200: rgb(255, 194, 209) ;
+  --color-primary-300: rgb(255, 181, 194) ;
+  --color-primary-400: rgb(255, 143, 163) ;
+  --color-primary-500: rgb(247, 109, 146) ;
+  --color-primary-600: rgb(224, 75, 116) ;
+  --color-primary-700: rgb(201, 51, 87) ;
+  --color-primary-800: rgb(168, 31, 59) ;
+  --color-primary-900: rgb(135, 15, 33) ;
+  --color-primary-950: rgb(97, 8, 15) ;
+
+  /* Accent Colors */
+  --color-accent-50: rgb(253, 249, 252) ;
+  --color-accent-100: rgb(250, 240, 247) ;
+  --color-accent-200: rgb(247, 224, 239) ;
+  --color-accent-300: rgb(242, 181, 212) ;
+  --color-accent-400: rgb(224, 139, 182) ;
+  --color-accent-500: rgb(200, 100, 154) ;
+  --color-accent-600: rgb(168, 76, 126) ;
+  --color-accent-700: rgb(135, 47, 97) ;
+  --color-accent-800: rgb(97, 31, 69) ;
+  --color-accent-900: rgb(64, 14, 41) ;
+  --color-accent-950: rgb(40, 9, 22) ;
+
+  /* Fonts */
+  --font-mySans: "Montserrat", sans-serif
+}
