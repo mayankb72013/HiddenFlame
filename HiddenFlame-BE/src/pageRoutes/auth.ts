@@ -36,6 +36,7 @@ authRouter.get("/google/callback",passport.authenticate("google",{ session: fals
         secure: false,
         sameSite: "lax"
     })
+    // res.json({token})
     console.log("Redirecting to Dashboard");
     res.redirect("http://localhost:5173/dashboard");
 })

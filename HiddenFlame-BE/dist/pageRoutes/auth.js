@@ -33,6 +33,7 @@ authRouter.get("/google/callback", passport_1.default.authenticate("google", { s
         secure: false,
         sameSite: "lax"
     });
+    // res.json({token})
     console.log("Redirecting to Dashboard");
     res.redirect("http://localhost:5173/dashboard");
 });
