@@ -1,30 +1,32 @@
 import "@fortawesome/fontawesome-free/css/all.min.css";
-import { useEffect, useState } from "react";
+// import { TokenExpiredError } from "jsonwebtoken";
+// import { useEffect, useState } from "react";
 
 
 export default function SignUp() {
  
-    const [auth, setAuth] = useState<{ token: string | null }>({ token: null });
+    // const [auth, setAuth] = useState<{ token: string | null }>({ token: null });
 
-    useEffect(() => {
-        fetch("http://localhost:5000/auth/check-auth", {
-            credentials: "include", // Ensures cookies are sent
-        })
-            .then(res => res.json())
-            .then(data => {
-                if (data.token) {
-                    setAuth({ token: data.token });
-                }
-            })
-            .catch(() => console.log("Not authenticated"));
-    }, []);
+//     useEffect(() => {
+//         fetch("http://localhost:5000/auth/check-auth", {
+//             credentials: "include", // Ensures cookies are sent
+//         })
+//             .then(res => res.json())
+//             .then(data => {
+//                 if (data.token) {
+//                     setAuth({ token: data.token.user });
+//                 }
+//             })
+//             .catch(() => console.log("Not authenticated"));
+//     }, []);
     
 
-   function googleAuth(event?: React.MouseEvent<HTMLButtonElement>){
-    event?.preventDefault();
-    window.location.href = "http://localhost:3000/auth/google"
+//    function googleAuth(event?: React.MouseEvent<HTMLButtonElement>){
+//     event?.preventDefault();
+//     window.location.href = "http://localhost:3000/auth/google"
+//       localStorage.setItem("token",auth+"");
       
-   }
+//    }
 
     
 
@@ -39,7 +41,7 @@ export default function SignUp() {
                     <form className="flex flex-col items-center justify-center h-full px-12 text-center">
                         <h1 className="text-3xl font-mySans font-extrabold">Create Account</h1>
                         <div className="flex space-x-3 my-4">
-                            <button onClick={googleAuth} className="border border-gray-300 rounded-full px-2.5 py-2"><i className="fab fa-google"></i></button>
+                            <a href="http://localhost:3000/auth/google" className="border border-gray-300 rounded-full px-2.5 py-2"><i className="fab fa-google"></i></a>
                             <a href="#" className="border border-gray-300 rounded-full px-3.5 py-2"><i className="fab fa-linkedin-in"></i></a>
                             <a href="#" className="border border-gray-300 rounded-full px-4 py-2"><i className="fab fa-facebook-f"></i></a>
                         </div>

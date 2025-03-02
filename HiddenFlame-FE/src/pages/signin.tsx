@@ -12,7 +12,7 @@ export default function SignIn() {
                     <form className="flex flex-col items-center justify-center h-full px-12 text-center">
                         <h1 className="text-3xl font-bold">Sign in</h1>
                         <div className="flex space-x-3 my-4">
-                            <a href="#" className="border border-gray-300 rounded-full px-2.5 py-2"><i className="fab fa-google-plus-g"></i></a>
+                            <a href="http://localhost:3000/auth/google" className="border border-gray-300 rounded-full px-2.5 py-2"><i className="fab fa-google-plus-g"></i></a>
                             <a href="#" className="border border-gray-300 rounded-full px-3.5 py-2"><i className="fab fa-linkedin-in"></i></a>
                             <a href="#" className="border border-gray-300 rounded-full px-4 py-2"><i className="fab fa-facebook-f"></i></a>
                         </div>
