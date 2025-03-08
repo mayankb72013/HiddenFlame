@@ -1,0 +1,72 @@
+﻿//GOOGLE
+
+{
+  id: '117582259356322740787',
+  displayName: 'Mayank Balmoori',
+  name: { familyName: 'Balmoori', givenName: 'Mayank' },
+  emails: [ { value: 'balmoorimayank@gmail.com', verified: true } ],
+  photos: [
+    {
+      value: 'https://lh3.googleusercontent.com/a/ACg8ocJaEaklskTePRVb5-d48uECMSGtePaOssIrZMgDIdEPMn6ueQ=s96-c'
+    }
+  ],
+  provider: 'google',
+  _raw: '{\n' +
+    '  "sub": "117582259356322740787",\n' +
+    '  "name": "Mayank Balmoori",\n' +
+    '  "given_name": "Mayank",\n' +
+    '  "family_name": "Balmoori",\n' +
+    '  "picture": "https://lh3.googleusercontent.com/a/ACg8ocJaEaklskTePRVb5-d48uECMSGtePaOssIrZMgDIdEPMn6ueQ\\u003ds96-c",\n' +
+    '  "email": "balmoorimayank@gmail.com",\n' +
+    '  "email_verified": true\n' +
+    '}',
+  _json: {
+    sub: '117582259356322740787',
+    name: 'Mayank Balmoori',
+    given_name: 'Mayank',
+    family_name: 'Balmoori',
+    picture: 'https://lh3.googleusercontent.com/a/ACg8ocJaEaklskTePRVb5-d48uECMSGtePaOssIrZMgDIdEPMn6ueQ=s96-c',
+    email: 'balmoorimayank@gmail.com',
+    email_verified: true
+  }
+}
+
+My-Temporary url:  https://www.temporary-url.com/8D8B52
+
+//discord
+
+{
+  id: '1154695413564186705',
+  username: 'mayankbalmoori_18139',
+  avatar: null,
+  discriminator: '0',
+  public_flags: 0,
+  flags: 0,
+  banner: null,
+  accent_color: null,
+  global_name: 'sllik78',
+  avatar_decoration_data: null,
+  banner_color: null,
+  clan: null,
+  primary_guild: null,
+  mfa_enabled: false,
+  locale: 'en-GB',
+  premium_type: 0,
+  email: 'balmoorimayank@gmail.com',
+  verified: true,
+  provider: 'discord',
+  accessToken: 'vI3oj5q0V0QYhaA1BgpqElcxFbtWxy',
+  guilds: [
+    {
+      id: '1263912990160457738',
+      name: '100xDevs | Cohort 3 | Devops | web3',
+      icon: '54f682dc51b1feec60a57f2e09cffe29',
+      banner: null,
+      owner: false,
+      permissions: 37080640,
+      permissions_new: '2217687073017408',
+      features: [Array]
+    }
+  ],
+  fetchedAt: 2025-03-02T16:27:14.109Z
+}

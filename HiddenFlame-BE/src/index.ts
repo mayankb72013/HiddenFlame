@@ -6,12 +6,14 @@ import userRouter from "./pageRoutes/user";
 import passport from "./Middleware/passportconfig"
 
 const app = express();
+
 app.use(cors({
     origin: "http://localhost:5173",
     credentials: true
 }))
 // app.options("*",cors())
 app.use(express.json());
+
 
 app.use(cookieSession({
     name:"session",
@@ -37,6 +39,7 @@ app.use(passport.session());
 
 app.use("/auth",authRouter);
 app.use("/user",userRouter);
+
 
 app.get("/",function (req,res){
     res.status(200).json({

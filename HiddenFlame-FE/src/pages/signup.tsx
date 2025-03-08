@@ -60,7 +60,7 @@ export default function SignUp() {
     return (
         <div className="flex items-center justify-center h-screen bg-gray-100 font-mySans">
             <div className="relative w-[768px] max-w-full min-h-[480px] bg-white shadow-lg rounded-lg overflow-hidden">
-                <div className="absolute top-0 left-0 w-1/2 h-full bg-gradient-to-r from-secondary-400 to-primary-400 text-white flex items-center justify-center flex-col gap-4">
+                <div className="absolute top-0 left-0 w-1/2 h-full bg-gradient-to-r from-secondary-500 to-primary-500 text-white flex items-center justify-center flex-col gap-4">
                     <h1 className="text-4xl font-extrabold">Welcome Back!</h1>
                     <p className="text-center font-medium text-sm px-6">To keep connected with us please login with your personal info</p>
                 </div>

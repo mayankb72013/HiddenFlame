@@ -54,7 +54,7 @@ export default function SignIn() {
     return (
         <div className="flex items-center justify-center h-screen bg-gray-100 font-mySans">
             <div className="relative w-[768px] max-w-full min-h-[480px] bg-white shadow-lg rounded-lg overflow-hidden">
-                <div className="absolute top-0 left-0 w-1/2 h-full bg-gradient-to-r from-secondary-400 to-primary-400 text-white flex items-center justify-center flex-col gap-4">
+                <div className="absolute top-0 left-0 w-1/2 h-full bg-gradient-to-r from-secondary-500 to-primary-500 text-white flex items-center justify-center flex-col gap-4">
                     <h1 className="text-4xl font-extrabold">Hello, Friend!</h1>
                     <p className="text-center font-medium text-sm px-6">Enter your personal details and start journey with us</p>
                 </div>
@@ -73,7 +73,7 @@ export default function SignIn() {
                         {errMsgPass !== "" && <div className="text-sm text-red-500">{errMsgPass}</div>}
                         {errMsgZod !== "" && <div className="text-sm text-red-500">{errMsgZod}</div>}
                         <a href="#" className="text-sm text-gray-600 mt-2">Forgot your password?</a>
-                        <button onClick={(e) => { e.preventDefault(); signin() }} className="bg-primary-400 text-white cursor-pointer font-bold py-2 px-6 mt-4 rounded-full">Sign In</button>
+                        <button onClick={(e) => { e.preventDefault(); signin() }} className="bg-primary-500 text-white cursor-pointer font-bold py-2 px-6 mt-4 rounded-full">Sign In</button>
                     </form>
                 </div>
             </div>
