@@ -17,11 +17,17 @@ export default function GoogleOAuth(){
             if(profile.emails == undefined || profile.emails == null){
                 throw new Error("Email is Undefined or Null");
             }
-             let user = await client.user.findUnique({
-                where:{
-                    email: profile.emails[0].value
-                }
-             })
+            let user;
+             try{
+                user = await client.user.findUnique({
+                    where:{
+                        email: profile.emails[0].value
+                    }
+                 })
+             }
+             catch (e){
+                done(e,false);
+             }
 
              if(user){
                 done(null,user);
@@ -31,7 +37,7 @@ export default function GoogleOAuth(){
                     data:{
                         name: profile.displayName,
                         email: profile.emails[0].value,
-                        password: null
+                        password: null,
                     }
                 })
                 done(null,user);
@@ -41,27 +47,5 @@ export default function GoogleOAuth(){
              done(e,false);
           }
     }))
-
-    passport.serializeUser(function (user,done){
-        done(null,String(user.id));
-    })
-
-    passport.deserializeUser(async function (id,done){
-        try{
-            const user = await client.user.findUnique({
-                where:{
-                    id: Number(id)
-                }
-            })
-            if(user){
-                done(null,user);
-            }
-            else{
-                throw new Error("No such user exists");
-            }
-        }
-        catch(e){
-            done(e,false);
-        }
-    })
+    
 }

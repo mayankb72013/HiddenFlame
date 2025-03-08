@@ -1,24 +1,26 @@
 import {Request,Response,NextFunction} from "express"
 import jwt from "jsonwebtoken"
-import { User } from "@prisma/client";
 
+interface AuthRequest extends Request{
+   id?: number
+}
 
-export function userAuthMiddleware(req: Request,res: Response,next: NextFunction){
+export function userAuthMiddleware(req: AuthRequest,res: Response,next: NextFunction){
    const authHeader = req.headers.authorization;
    if(!authHeader){
-       res.json({
+       res.status(400).json({
         msg: "Token Not found"
        })
        return;
    }
     const token = authHeader.split(" ")[1];
    try{
-      const decode = jwt.verify(token, process.env.JWT_SECRET_CLIENT as string) as {user: User};
-      req.user = decode.user
+      const decode = jwt.verify(token, process.env.JWT_SECRET_CLIENT as string) as {id: number};
+      req.id = decode.id
       next();
    }
    catch (e){
-      res.json({
+      res.status(401).json({
         msg: "Token is invalid"
       })
    }

@@ -8,7 +8,7 @@ const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 function userAuthMiddleware(req, res, next) {
     const authHeader = req.headers.authorization;
     if (!authHeader) {
-        res.json({
+        res.status(400).json({
             msg: "Token Not found"
         });
         return;
@@ -16,11 +16,11 @@ function userAuthMiddleware(req, res, next) {
     const token = authHeader.split(" ")[1];
     try {
         const decode = jsonwebtoken_1.default.verify(token, process.env.JWT_SECRET_CLIENT);
-        req.user = decode.user;
+        req.id = decode.id;
         next();
     }
     catch (e) {
-        res.json({
+        res.status(401).json({
             msg: "Token is invalid"
         });
     }

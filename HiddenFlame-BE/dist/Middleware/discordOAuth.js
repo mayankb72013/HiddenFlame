@@ -12,29 +12,26 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.default = GoogleOAuth;
+exports.default = DiscordOAuth;
 const passport_1 = __importDefault(require("passport"));
-const passport_google_oauth20_1 = require("passport-google-oauth20");
+const passport_discord_1 = require("passport-discord");
 const dotenv_1 = __importDefault(require("dotenv"));
 const client_1 = require("@prisma/client");
 const client = new client_1.PrismaClient();
 dotenv_1.default.config();
-function GoogleOAuth() {
-    passport_1.default.use(new passport_google_oauth20_1.Strategy({
-        clientID: process.env.GOOGLE_CLIENT_ID,
-        clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-        callbackURL: "/auth/google/callback",
-        scope: ["profile", "email"]
+function DiscordOAuth() {
+    passport_1.default.use(new passport_discord_1.Strategy({
+        clientID: process.env.DISCORD_CLIENT_ID,
+        clientSecret: process.env.DISCORD_CLIENT_SECRET,
+        callbackURL: "http://localhost:3000/auth/discord/callback",
+        scope: ['identify', 'email', 'guilds', 'guilds.join']
     }, (accessToken, refreshToken, profile, done) => __awaiter(this, void 0, void 0, function* () {
         try {
-            if (profile.emails == undefined || profile.emails == null) {
-                throw new Error("Email is Undefined or Null");
-            }
             let user;
             try {
                 user = yield client.user.findUnique({
                     where: {
-                        email: profile.emails[0].value
+                        email: profile.email
                     }
                 });
             }
@@ -47,13 +44,13 @@ function GoogleOAuth() {
             else {
                 user = yield client.user.create({
                     data: {
-                        name: profile.displayName,
-                        email: profile.emails[0].value,
+                        name: profile.global_name,
+                        email: profile.email,
                         password: null,
                     }
                 });
-                done(null, user);
             }
+            done(null, user);
         }
         catch (e) {
             done(e, false);
