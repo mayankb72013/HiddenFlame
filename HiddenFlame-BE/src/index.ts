@@ -8,16 +8,17 @@ import passport from "./Middleware/passportconfig"
 const app = express();
 
 app.use(cors({
-    origin: "http://localhost:5173",
+    origin: ["http://localhost:5173","http://localhost:3000"],
+    methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true
 }))
-// app.options("*",cors())
+app.options("*",cors())
 app.use(express.json());
 
 
 app.use(cookieSession({
     name:"session",
-    maxAge: 3*60*60,
+    maxAge: 3*60*60*1000,
     keys: [process.env.COOKIE_SESSION_KEY as string]
 }))
 app.use(function(request, response, next) {

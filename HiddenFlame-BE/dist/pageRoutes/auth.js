@@ -36,10 +36,10 @@ authRouter.get("/google",
 // ,
 passport_1.default.authenticate("google", {
     scope: ["profile", "email"],
-    // prompt: "consent"
+    prompt: "consent"
 }));
 authRouter.get("/google/callback", passport_1.default.authenticate("google"), (req, res) => {
-    res.redirect("http://localhost:5173/user/dashboard");
+    res.redirect("http://localhost:5173/user/onboarding");
     // res.json("Call back URL reached");
 });
 //Discord OAuth routes
@@ -55,10 +55,10 @@ authRouter.get("/discord"
 //     })
 // }
 , passport_1.default.authenticate('discord', {
-// prompt: "consent"
+    prompt: "consent"
 }));
 authRouter.get("/discord/callback", passport_1.default.authenticate("discord"), (req, res) => {
-    res.redirect("http://localhost:5173/user/dashboard");
+    res.redirect("http://localhost:5173/user/onboarding");
     // res.json("Successfull OAuth for discord");
 });
 const inputSchema = zod_1.z.object({

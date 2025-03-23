@@ -10,8 +10,8 @@ export default function App(){
           <Routes>
             <Route path="/signup" element={<SignUp></SignUp>}></Route>
             <Route path="/signin" element={<SignIn></SignIn>}></Route>
-            <Route path="/onboarding" element={<OnBoadingPage></OnBoadingPage>}></Route>
-            <Route path="user/dashboard" element={<Dashboard></Dashboard>}></Route>
+            <Route path="/user/onboarding" element={<OnBoadingPage></OnBoadingPage>}></Route>
+            <Route path="/user/dashboard" element={<Dashboard></Dashboard>}></Route>
           </Routes>
       </BrowserRouter>
     )

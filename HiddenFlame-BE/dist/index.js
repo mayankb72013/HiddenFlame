@@ -11,14 +11,15 @@ const user_1 = __importDefault(require("./pageRoutes/user"));
 const passportconfig_1 = __importDefault(require("./Middleware/passportconfig"));
 const app = (0, express_1.default)();
 app.use((0, cors_1.default)({
-    origin: "http://localhost:5173",
+    origin: ["http://localhost:5173", "http://localhost:3000"],
+    methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true
 }));
-// app.options("*",cors())
+app.options("*", (0, cors_1.default)());
 app.use(express_1.default.json());
 app.use((0, cookie_session_1.default)({
     name: "session",
-    maxAge: 3 * 60 * 60,
+    maxAge: 3 * 60 * 60 * 1000,
     keys: [process.env.COOKIE_SESSION_KEY]
 }));
 app.use(function (request, response, next) {
