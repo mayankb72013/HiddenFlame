@@ -52,7 +52,11 @@ const dataSchema = z.object({
     state: z.string().optional(),
     city: z.string().optional(),
     lookingFor: z.string(),
-    about: z.string()
+    about: z.string(),
+    relStatus: z.string(),
+    youAreRather: z.array(z.string()),
+    hobbies: z.array(z.string()),
+    features: z.array(z.string())
 })
 
 userRouter.put("/onboarding", async function (req, res) {
@@ -64,6 +68,10 @@ userRouter.put("/onboarding", async function (req, res) {
     const city = req.body.city;
     const lookingFor = req.body.lookingFor;
     const about = req.body.about;
+    const relStatus = req.body.relStatus;
+    const youAreRather = req.body.youAreRather;
+    const hobbies = req.body.hobbies;
+    const features = req.body.features;
 
     const check = dataSchema.safeParse(req.body);
 
@@ -88,6 +96,10 @@ userRouter.put("/onboarding", async function (req, res) {
                     username: username,
                     state: state,
                     about: about,
+                    relStatus: relStatus,
+                    youAreRather: youAreRather,
+                    hobbies: hobbies,
+                    features: features
                 }
             })
             res.json({

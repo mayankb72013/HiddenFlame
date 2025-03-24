@@ -56,7 +56,11 @@ const dataSchema = zod_1.z.object({
     state: zod_1.z.string().optional(),
     city: zod_1.z.string().optional(),
     lookingFor: zod_1.z.string(),
-    about: zod_1.z.string()
+    about: zod_1.z.string(),
+    relStatus: zod_1.z.string(),
+    youAreRather: zod_1.z.array(zod_1.z.string()),
+    hobbies: zod_1.z.array(zod_1.z.string()),
+    features: zod_1.z.array(zod_1.z.string())
 });
 userRouter.put("/onboarding", function (req, res) {
     return __awaiter(this, void 0, void 0, function* () {
@@ -69,6 +73,10 @@ userRouter.put("/onboarding", function (req, res) {
         const city = req.body.city;
         const lookingFor = req.body.lookingFor;
         const about = req.body.about;
+        const relStatus = req.body.relStatus;
+        const youAreRather = req.body.youAreRather;
+        const hobbies = req.body.hobbies;
+        const features = req.body.features;
         const check = dataSchema.safeParse(req.body);
         if (check.success) {
             const user = yield client.user.findUnique({
@@ -91,6 +99,10 @@ userRouter.put("/onboarding", function (req, res) {
                         username: username,
                         state: state,
                         about: about,
+                        relStatus: relStatus,
+                        youAreRather: youAreRather,
+                        hobbies: hobbies,
+                        features: features
                     }
                 });
                 res.json({

@@ -26,5 +26,9 @@ model User{
   state             String?
   city              String?
   lookingFor        String?
+  relStatus         String?
+  youAreRather      String[]          @default([])
+  hobbies           String[]          @default([])
+  features          String[]          @default([])
   about             String?
 }
