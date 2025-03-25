@@ -122,7 +122,7 @@ userRouter.put("/onboarding", async function (req, res) {
     }
 })
 
-userRouter.get("/dashboard", async function (req, res) {
+userRouter.get("/profile", async function (req, res) {
     res.json(req.user);
 })
 
@@ -130,17 +130,19 @@ userRouter.get("/logout", function (req: AuthRequest, res, next) {
     if (req.authType === "oauth") {
         req.logout((err) => {
             if (err) {
-                res.json({
-                    msg: err
-                })
+               return next(err)
             }
-            res.redirect("http://localhost:5173/signin");
+            res.json({
+                msg: "Logged out",
+                redirectUrl: "http://localhost:5173/signin"
+            });
         });
     }
     else if (req.authType === "normal") {
         //Since i am using localStorage it can only be cleared from frontEnd
         res.json({
-            msg: "clear it"
+            msg: "clear it",
+            redirectUrl: "http://localhost:5173/signin"
         })
     }
 
