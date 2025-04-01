@@ -1,7 +1,7 @@
 import React from 'react';
 import { FaUserCircle } from 'react-icons/fa';
 
-interface MatchCardProps {
+interface UserCardProps {
   username: string;
   country: string;
   state: string;
@@ -10,7 +10,7 @@ interface MatchCardProps {
   onViewProfile?: () => void;
 }
 
-const MatchCard: React.FC<MatchCardProps> = ({ username, country, state, city, onSendRequest, onViewProfile }) => {
+const UserCard: React.FC<UserCardProps> = ({ username, country, state, city, onSendRequest, onViewProfile }) => {
   return (
     <div className="w-80 p-6 bg-background-900 rounded-2xl shadow-md">
       <div className="flex justify-center mb-4">
@@ -26,4 +26,4 @@ const MatchCard: React.FC<MatchCardProps> = ({ username, country, state, city, o
   );
 };
 
-export default MatchCard;
+export default UserCard;

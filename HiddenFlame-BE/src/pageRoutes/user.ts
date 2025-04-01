@@ -1,6 +1,6 @@
 import { PrismaClient } from '@prisma/client';
 import express, { NextFunction, Request, Response } from 'express'
-import { z } from 'zod'
+import { boolean, z } from 'zod'
 
 
 const userRouter = express.Router();
@@ -107,7 +107,7 @@ userRouter.put("/onboarding", async function (req, res) {
                 redirectUrl: "http://localhost:5173/user/dashboard"
             })
         }
-        else{
+        else {
             res.status(404).json({
                 msg: "User not found"
             })
@@ -126,11 +126,71 @@ userRouter.get("/profile", async function (req, res) {
     res.json(req.user);
 })
 
+userRouter.post("/getMatches",async function (req, res) {
+    const lookingFor = req.body.lookingFor;
+    const fromAge = req.body.fromAge;
+    const toAge = req.body.toAge;
+    const youAreRather = req.body.youAreRather;
+    const hobbies = req.body.hobbies;
+    const features = req.body.features;
+
+    let users;
+    try {
+        users = await client.user.findMany({
+            where: {
+              AND: [
+                { id: { not: req.user?.id } }, // Exclude the current user
+                {gender: lookingFor},
+                {
+                  OR: [
+                    { age: { gte: fromAge, lte: toAge } },
+                    { youAreRather: { hasSome: youAreRather } },
+                    { hobbies: { hasSome: hobbies } },
+                    { features: { hasSome: features } }
+                  ].filter(Boolean)
+                }
+              ]
+            }
+          });
+          
+          
+    } catch (e) {
+        console.error(e);
+        res.status(503).json({
+            msg: "Database is down",
+            errorMsg: e
+        });
+    }
+
+    // Create match score for each user
+    const afterMatches = users?.map((user) => {
+        let matches = 0;
+
+        // Match based on provided criteria
+        if (lookingFor && user.lookingFor === lookingFor) matches++;
+        if (fromAge && toAge && user.age && user.age >= fromAge && user.age <= toAge) matches++;
+        if (youAreRather && user.youAreRather.includes(youAreRather)) matches++; // Check if 'youAreRather' matches
+        if (hobbies && hobbies.some((hobby: any) => user.hobbies.includes(hobby))) matches++; // Check for hobbies match
+        if (features && features.some((feature: any) => user.features.includes(feature))) matches++; // Check for features match
+
+        return { ...user, matches };
+    }) || [];
+
+    // Sort users based on match score
+    const sorted = afterMatches.sort((a, b) => b.matches - a.matches);
+
+    res.json({
+        msg: "Success",
+        matchedUsers: sorted
+    });
+});
+
+
 userRouter.get("/logout", function (req: AuthRequest, res, next) {
     if (req.authType === "oauth") {
         req.logout((err) => {
             if (err) {
-               return next(err)
+                return next(err)
             }
             res.json({
                 msg: "Logged out",

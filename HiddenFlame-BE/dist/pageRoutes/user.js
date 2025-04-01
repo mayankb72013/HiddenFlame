@@ -130,6 +130,65 @@ userRouter.get("/profile", function (req, res) {
         res.json(req.user);
     });
 });
+userRouter.post("/getMatches", function (req, res) {
+    return __awaiter(this, void 0, void 0, function* () {
+        var _a;
+        const lookingFor = req.body.lookingFor;
+        const fromAge = req.body.fromAge;
+        const toAge = req.body.toAge;
+        const youAreRather = req.body.youAreRather;
+        const hobbies = req.body.hobbies;
+        const features = req.body.features;
+        let users;
+        try {
+            users = yield client.user.findMany({
+                where: {
+                    AND: [
+                        { id: { not: (_a = req.user) === null || _a === void 0 ? void 0 : _a.id } }, // Exclude the current user
+                        { gender: lookingFor },
+                        {
+                            OR: [
+                                { age: { gte: fromAge, lte: toAge } },
+                                { youAreRather: { hasSome: youAreRather } },
+                                { hobbies: { hasSome: hobbies } },
+                                { features: { hasSome: features } }
+                            ].filter(Boolean)
+                        }
+                    ]
+                }
+            });
+        }
+        catch (e) {
+            console.error(e);
+            res.status(503).json({
+                msg: "Database is down",
+                errorMsg: e
+            });
+        }
+        // Create match score for each user
+        const afterMatches = (users === null || users === void 0 ? void 0 : users.map((user) => {
+            let matches = 0;
+            // Match based on provided criteria
+            if (lookingFor && user.lookingFor === lookingFor)
+                matches++;
+            if (fromAge && toAge && user.age && user.age >= fromAge && user.age <= toAge)
+                matches++;
+            if (youAreRather && user.youAreRather.includes(youAreRather))
+                matches++; // Check if 'youAreRather' matches
+            if (hobbies && hobbies.some((hobby) => user.hobbies.includes(hobby)))
+                matches++; // Check for hobbies match
+            if (features && features.some((feature) => user.features.includes(feature)))
+                matches++; // Check for features match
+            return Object.assign(Object.assign({}, user), { matches });
+        })) || [];
+        // Sort users based on match score
+        const sorted = afterMatches.sort((a, b) => b.matches - a.matches);
+        res.json({
+            msg: "Success",
+            matchedUsers: sorted
+        });
+    });
+});
 userRouter.get("/logout", function (req, res, next) {
     if (req.authType === "oauth") {
         req.logout((err) => {
